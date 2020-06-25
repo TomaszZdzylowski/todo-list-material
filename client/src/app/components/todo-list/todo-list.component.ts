@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { TodosService } from '../../services/todos.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-todo-list',
@@ -9,11 +10,16 @@ import { TodosService } from '../../services/todos.service';
 })
 export class TodoListComponent implements OnInit {
   listOfTasks = [];
+  isVisible = false;
+
 
   constructor(private todos: TodosService) { }
 
   ngOnInit(): void {
     this.getAllTasks();
+    this.todos.subjectTasks.subscribe(() => {
+      this.getAllTasks();
+    });
   }
 
 
@@ -22,10 +28,23 @@ export class TodoListComponent implements OnInit {
   }
 
   getAllTasks() {
-    this.todos.getAllTasks().subscribe(response => {
+    this.todos.getAllTasks().pipe(take(1)).subscribe(response => {
       this.listOfTasks = response;
       console.log(response);
     });
+  }
+
+  deleteTask(taskId) {
+    this.todos.deleteTask(taskId).subscribe(response => console.log(response));
+    this.todos.subjectTasks.next(false);
+  }
+
+  showModal() {
+    this.isVisible = true;
+  }
+
+  reciveValue($event) {
+    this.isVisible = $event;
 
   }
 

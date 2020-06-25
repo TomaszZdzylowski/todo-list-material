@@ -1,1 +1,30 @@
-<p>todo-edit works!</p>
+<div class="l-form">
+    <form [formGroup]="editTaskForm" class="c-form">
+        <h3 class="c-form__heading">
+            Edit task
+        </h3>
+        <div class="c-form__box">
+            <label class="c-form__label" for="title">title</label>
+            <input formControlName="title" class="c-form__input" type="text" name="title" id="title">
+            <div *ngIf="title.invalid && (title.dirty || title.touched)">
+                <p *ngIf="title.errors.required">
+                    it's required
+                </p>
+            </div>
+        </div>
+        <div class="c-form__box">
+            <label class="c-form__label" for="description">description</label>
+            <input formControlName="description" class="c-form__input" type="text" name="description" id="description">
+            <div *ngIf="description.invalid && (description.dirty ||description.touched)">
+                <p *ngIf="description.errors.required">
+                    it's required
+                </p>
+            </div>
+
+        </div>
+        <div>
+            <button [disabled]="!editTaskForm.valid" class="c-button c-button--primary">edit task</button>
+            <button type="button" (click)="sendValue()" class="c-button c-button--secondary">close</button>
+        </div>
+    </form>
+</div>

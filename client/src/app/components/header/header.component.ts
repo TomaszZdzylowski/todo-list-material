@@ -6,10 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  isVisible = false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  showModal() {
+    this.isVisible = true;
+  }
+
+  reciveValue($event) {
+    this.isVisible = $event;
+
+  }
 }
