@@ -15,6 +15,10 @@ export class TodosService {
     return this.http.get<any>('http://localhost:3000/tasks');
   }
 
+  public getSingleTask(taskId): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/tasks/${taskId}`);
+  }
+
   public addTask(data): Observable<any> {
     return this.http.post<any>('http://localhost:3000/tasks', data);
   }

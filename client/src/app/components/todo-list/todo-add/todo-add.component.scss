@@ -16,14 +16,30 @@
     padding: 2rem 3rem;
     border-radius: 4px;
 
+    &__validationAlert {
+        color: #fe7a71;
+        font-size: 0.875rem;
+        margin-top: 2px;
+    }
+
+    &__heading {
+        margin-bottom: 8px;
+        text-align: center;
+        color: #625bec;
+    }
+
     &__box {
-        padding: 1rem 0;
+        padding: 12px 0;
     }
     &__label {
         font-size: 0.875rem;
+        color: #736ced;
     }
     &__input {
+        font-size: 0.875rem;
+        padding: 2px 4px;
         display: block;
+        margin-top: 8px;
     }
 }
 

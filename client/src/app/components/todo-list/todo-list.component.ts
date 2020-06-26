@@ -11,6 +11,7 @@ import { take } from 'rxjs/operators';
 export class TodoListComponent implements OnInit {
   listOfTasks = [];
   isVisible = false;
+  taskId: String;
 
 
   constructor(private todos: TodosService) { }
@@ -39,8 +40,9 @@ export class TodoListComponent implements OnInit {
     this.todos.subjectTasks.next(false);
   }
 
-  showModal() {
+  showModal(id) {
     this.isVisible = true;
+    this.taskId = id;
   }
 
   reciveValue($event) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TodosService } from '../../../services/todos.service';
 
@@ -12,6 +12,7 @@ export class TodoEditComponent implements OnInit {
   isVisible = false;
   editTaskForm: FormGroup;
   @Output() modalEvent = new EventEmitter();
+  @Input() taskId: string;
 
   constructor(private fb: FormBuilder, private todos: TodosService) { }
 
@@ -24,6 +25,11 @@ export class TodoEditComponent implements OnInit {
         Validators.required
       ]]
     });
+    this.getDataTask(this.taskId);
+  }
+
+  onSubmit() {
+    this.editTask(this.taskId);
   }
 
   editTask(taskId) {
@@ -35,6 +41,16 @@ export class TodoEditComponent implements OnInit {
       console.log(response);
       this.sendValue();
       this.todos.subjectTasks.next(true);
+    });
+  }
+
+  getDataTask(taskId) {
+    this.todos.getSingleTask(taskId).subscribe(response => {
+      this.editTaskForm.setValue({
+        title: response.title,
+        description: response.description
+      })
+      console.log(response);
     });
   }
 

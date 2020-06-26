@@ -8,7 +8,7 @@
                 {{task.description}}
             </p>
             <div class="c-data__options">
-                <button (click)="showModal()" class="c-button c-button--edit">
+                <button (click)="showModal(task._id)" class="c-button c-button--edit">
                     Edit
                 </button>
                 <button (click)="deleteTask(task._id)" class="c-button c-button--delete">
@@ -18,4 +18,4 @@
         </div>
     </div>
 </div>
-<app-todo-edit (modalEvent)="reciveValue($event)" *ngIf="isVisible"></app-todo-edit>
+<app-todo-edit [taskId]="taskId" (modalEvent)="reciveValue($event)" *ngIf="isVisible"></app-todo-edit>
