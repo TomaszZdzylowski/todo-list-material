@@ -10,7 +10,7 @@ import { take } from 'rxjs/operators';
 })
 export class TodoListComponent implements OnInit {
   listOfTasks = [];
-  isVisible = false;
+  isVisible: boolean = false;
   taskId: String;
 
 
@@ -28,24 +28,24 @@ export class TodoListComponent implements OnInit {
     moveItemInArray(this.listOfTasks, event.previousIndex, event.currentIndex);
   }
 
-  getAllTasks() {
+  getAllTasks(): void {
     this.todos.getAllTasks().pipe(take(1)).subscribe(response => {
       this.listOfTasks = response;
       console.log(response);
     });
   }
 
-  deleteTask(taskId) {
+  deleteTask(taskId): void {
     this.todos.deleteTask(taskId).subscribe(response => console.log(response));
     this.todos.subjectTasks.next(false);
   }
 
-  showModal(id) {
+  showModal(id): void {
     this.isVisible = true;
     this.taskId = id;
   }
 
-  reciveValue($event) {
+  reciveValue($event): void {
     this.isVisible = $event;
 
   }

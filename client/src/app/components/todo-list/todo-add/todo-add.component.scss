@@ -10,53 +10,24 @@
     z-index: 20;
     background-color: rgba(0, 0, 0, 0.6);
 }
-
 .c-form {
-    background-color: #ffffff;
-    padding: 2rem 3rem;
-    border-radius: 4px;
+    max-width:280px;
+    width: 100%;
+    background-color: #fff;
+    padding: 32px;
+    border-radius: 3px;
 
-    &__validationAlert {
-        color: #fe7a71;
-        font-size: 0.875rem;
-        margin-top: 2px;
-    }
-
-    &__heading {
-        margin-bottom: 8px;
-        text-align: center;
-        color: #625bec;
-    }
-
-    &__box {
-        padding: 12px 0;
-    }
-    &__label {
-        font-size: 0.875rem;
-        color: #736ced;
-    }
-    &__input {
-        font-size: 0.875rem;
-        padding: 2px 4px;
-        display: block;
-        margin-top: 8px;
+    &__box{
+        width: 100%;
     }
 }
+  
+.c-buttons-group{
+    margin:12px 0 0 0;
 
-.c-button {
-    cursor: pointer;
-    min-width: 40px;
-    padding: 2px 4px;
-    font-size: 0.875rem;
-    border-radius: 4px;
-    background-color: transparent;
 }
 
-.c-button--primary {
-    border: 1px solid #50c9ce;
-    margin-right: 8px;
-}
+.c-button--save{
+    margin:0 12px 0 0;
 
-.c-button--secondary {
-    border: 1px solid #fe7a71;
 }

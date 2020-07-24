@@ -1,34 +1,35 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-
+import { Task } from '../interfaces/task';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodosService {
   subjectTasks = new Subject();
+  tasksUrl: string = 'http://localhost:3000/tasks';
 
   constructor(private http: HttpClient) { }
 
-  public getAllTasks(): Observable<any> {
-    return this.http.get<any>('http://localhost:3000/tasks');
+  public getAllTasks(): Observable<Array<Task>> {
+    return this.http.get<Array<Task>>(`${this.tasksUrl}`);
   }
 
-  public getSingleTask(taskId): Observable<any> {
-    return this.http.get<any>(`http://localhost:3000/tasks/${taskId}`);
+  public getSingleTask(taskId): Observable<Task> {
+    return this.http.get<Task>(`${this.tasksUrl}/${taskId}`);
   }
 
-  public addTask(data): Observable<any> {
-    return this.http.post<any>('http://localhost:3000/tasks', data);
+  public addTask(data): Observable<Task> {
+    return this.http.post<Task>(`${this.tasksUrl}`, data);
   }
 
-  public deleteTask(taskId: number): Observable<any> {
-    return this.http.delete<any>(`http://localhost:3000/tasks/${taskId}`);
+  public deleteTask(taskId: number): Observable<Task> {
+    return this.http.delete<Task>(`${this.tasksUrl}/${taskId}`);
   }
 
-  public editTask(taskId: number, data): Observable<any> {
-    return this.http.patch<any>(`http://localhost:3000/tasks/${taskId}`, data);
+  public editTask(taskId: number, data): Observable<Task> {
+    return this.http.patch<Task>(`${this.tasksUrl}/${taskId}`, data);
   }
 
 }
