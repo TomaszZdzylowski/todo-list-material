@@ -1,17 +1,19 @@
-<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-    <div class="example-box" *ngFor="let task of listOfTasks" cdkDrag>
-        <div class="c-data">
-            <h3 class="c-data__title">
+<div cdkDropList class="l-container-list" (cdkDropListDropped)="drop($event)">
+    <div class="c-container-list" *ngFor="let task of listOfTasks" cdkDrag>
+        <div class="c-container-list__data">
+            <h3 class="c-container-list__title">
                 {{task.title}}
             </h3>
-            <p class="c-data__description">
+            <p class="c-container-list__description">
                 {{task.description}}
             </p>
-            <div class="c-data__options">
-                <button (click)="showModal(task._id)" class="c-button c-button--edit">
-                    Edit
+            <div class="c-buttons-group">
+                <button class="c-button c-button--edit" (click)="showModal(task._id)" mat-stroked-button
+                    color="primary">
+                    edit
                 </button>
-                <button (click)="deleteTask(task._id)" class="c-button c-button--delete">
+                <button type="button" class="c-button c-button--delete" (click)="deleteTask(task._id)"
+                    mat-stroked-button color="warn">
                     delete
                 </button>
             </div>

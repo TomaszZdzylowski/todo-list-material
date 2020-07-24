@@ -1,18 +1,23 @@
 <div class="l-form">
     <div class="l-form">
         <form [formGroup]="addTaskForm" (ngSubmit)="onSubmit()" class="c-form">
-            <mat-form-field class="c-form__box">
-                <mat-label>Title</mat-label>
-                <input formControlName="title" matInput placeholder="title">
-            </mat-form-field>
-            <mat-form-field class="c-form__box">
-                <mat-label>Description</mat-label>
-                <input formControlName="description" matInput placeholder="description">
-            </mat-form-field>
+            <h3 class="c-form__heading">
+                Add task
+            </h3>
+            <div>
+                <mat-form-field class="c-form__box">
+                    <mat-label>Title</mat-label>
+                    <input formControlName="title" matInput placeholder="title">
+                </mat-form-field>
+                <mat-form-field class="c-form__box">
+                    <mat-label>Description</mat-label>
+                    <input formControlName="description" matInput placeholder="description">
+                </mat-form-field>
+            </div>
             <div class="c-buttons-group">
                 <button class="c-button c-button--save" [disabled]="!addTaskForm.valid" mat-raised-button
                     color="primary">save</button>
-                <button type="c-button c-button--close" (click)="sendValue()" mat-raised-button
+                <button type="button" class="c-button c-button--close" (click)="sendValue()" mat-raised-button
                     color="basic">close</button>
             </div>
         </form>

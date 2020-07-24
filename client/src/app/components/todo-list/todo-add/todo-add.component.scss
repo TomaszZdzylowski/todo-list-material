@@ -8,7 +8,7 @@
     justify-content: center;
     align-items: center;
     z-index: 20;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 .c-form {
     max-width:280px;
@@ -16,6 +16,11 @@
     background-color: #fff;
     padding: 32px;
     border-radius: 3px;
+
+    &__heading{
+        color:#673ab7;
+        margin-bottom:16px;
+    }
 
     &__box{
         width: 100%;

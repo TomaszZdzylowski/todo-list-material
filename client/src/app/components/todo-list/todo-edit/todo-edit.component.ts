@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TodosService } from '../../../services/todos.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-todo-edit',
@@ -14,7 +15,7 @@ export class TodoEditComponent implements OnInit {
   @Output() modalEvent = new EventEmitter();
   @Input() taskId: string;
 
-  constructor(private fb: FormBuilder, private todos: TodosService) { }
+  constructor(private fb: FormBuilder, private todos: TodosService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.editTaskForm = this.fb.group({
@@ -30,6 +31,7 @@ export class TodoEditComponent implements OnInit {
 
   onSubmit() {
     this.editTask(this.taskId);
+    this.openSnackBar('Task edited', '🤯');
   }
 
   editTask(taskId) {
@@ -64,5 +66,11 @@ export class TodoEditComponent implements OnInit {
 
   get description() {
     return this.editTaskForm.get('description');
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 1500,
+    });
   }
 }

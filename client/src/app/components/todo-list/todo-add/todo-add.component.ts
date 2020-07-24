@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TodosService } from '../../../services/todos.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class TodoAddComponent implements OnInit {
   isVisible = false;
   @Output() modalEvent = new EventEmitter();
 
-  constructor(private fb: FormBuilder, private todos: TodosService) { }
+  constructor(private fb: FormBuilder, private todos: TodosService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.addTaskForm = this.fb.group({
@@ -29,6 +30,7 @@ export class TodoAddComponent implements OnInit {
 
   onSubmit() {
     this.addTask();
+    this.openSnackBar('Task added', '🙈');
   }
 
   addTask() {
@@ -53,6 +55,12 @@ export class TodoAddComponent implements OnInit {
 
   get description() {
     return this.addTaskForm.get('description');
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 1500,
+    });
   }
 
 

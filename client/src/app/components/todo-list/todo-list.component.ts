@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { TodosService } from '../../services/todos.service';
 import { take } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-todo-list',
@@ -14,7 +16,7 @@ export class TodoListComponent implements OnInit {
   taskId: String;
 
 
-  constructor(private todos: TodosService) { }
+  constructor(private todos: TodosService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getAllTasks();
@@ -22,7 +24,6 @@ export class TodoListComponent implements OnInit {
       this.getAllTasks();
     });
   }
-
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.listOfTasks, event.previousIndex, event.currentIndex);
@@ -38,6 +39,7 @@ export class TodoListComponent implements OnInit {
   deleteTask(taskId): void {
     this.todos.deleteTask(taskId).subscribe(response => console.log(response));
     this.todos.subjectTasks.next(false);
+    this.openSnackBar('Task deleted', '🙊');
   }
 
   showModal(id): void {
@@ -48,6 +50,12 @@ export class TodoListComponent implements OnInit {
   reciveValue($event): void {
     this.isVisible = $event;
 
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 1500,
+    });
   }
 
 }
