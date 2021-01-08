@@ -16,19 +16,19 @@ export class TodosService {
     return this.http.get<Array<Task>>(`${this.tasksUrl}`);
   }
 
-  public getSingleTask(taskId): Observable<Task> {
+  public getSingleTask(taskId: string): Observable<Task> {
     return this.http.get<Task>(`${this.tasksUrl}/${taskId}`);
   }
 
-  public addTask(data): Observable<Task> {
+  public addTask(data: Task): Observable<Task> {
     return this.http.post<Task>(`${this.tasksUrl}`, data);
   }
 
-  public deleteTask(taskId: number): Observable<Task> {
+  public deleteTask(taskId: string): Observable<any> {
     return this.http.delete<Task>(`${this.tasksUrl}/${taskId}`);
   }
 
-  public editTask(taskId: number, data): Observable<Task> {
+  public editTask(taskId: string, data): Observable<any> {
     return this.http.patch<Task>(`${this.tasksUrl}/${taskId}`, data);
   }
 

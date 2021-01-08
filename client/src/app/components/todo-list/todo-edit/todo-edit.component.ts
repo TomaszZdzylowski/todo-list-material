@@ -10,9 +10,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class TodoEditComponent implements OnInit {
 
-  isVisible = false;
+  isVisible: boolean = false;
   editTaskForm: FormGroup;
-  @Output() modalEvent = new EventEmitter();
+  @Output() modalEvent: EventEmitter<any> = new EventEmitter();
   @Input() taskId: string;
 
   constructor(private fb: FormBuilder, private todos: TodosService, private snackBar: MatSnackBar) { }
@@ -29,34 +29,35 @@ export class TodoEditComponent implements OnInit {
     this.getDataTask(this.taskId);
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.editTask(this.taskId);
     this.openSnackBar('Task edited', '🤯');
   }
 
-  editTask(taskId) {
+  editTask(taskId: string): void {
     const data = {
       title: this.editTaskForm.get(['title']).value,
       description: this.editTaskForm.get(['description']).value
     };
-    this.todos.editTask(taskId, data).subscribe(response => {
-      console.log(response);
-      this.sendValue();
-      this.todos.subjectTasks.next(true);
+
+    this.todos.editTask(taskId, data).subscribe(({ ok }) => {
+      if (ok === 1) {
+        this.sendValue();
+        this.todos.subjectTasks.next(true);
+      }
     });
   }
 
-  getDataTask(taskId) {
+  getDataTask(taskId: string): void {
     this.todos.getSingleTask(taskId).subscribe(response => {
       this.editTaskForm.setValue({
         title: response.title,
         description: response.description
       })
-      console.log(response);
     });
   }
 
-  sendValue() {
+  sendValue(): void {
     this.modalEvent.emit(this.isVisible);
   }
 
