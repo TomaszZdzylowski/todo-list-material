@@ -1,5 +1,4 @@
 .l-container-list {
-    width: 500px;
     max-width: 100%;
     border: solid 1px #ccc;
     min-height: 60px;
@@ -26,11 +25,11 @@
     &__description {
         font-size: 0.875rem;
         padding: 4px 0 8px;
-        color: #7F54C9;
+        color: #7f54c9;
         opacity: 0.9;
     }
-    &:last-child{
-        border:none;
+    &:last-child {
+        border: none;
     }
 }
 
@@ -46,21 +45,21 @@
 }
 
 .l-container-list.cdk-drop-list-dragging {
-	.c-container-list {
-		&:not(.cdk-drag-placeholder) {
-			transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-		}
-	}
+    .c-container-list {
+        &:not(.cdk-drag-placeholder) {
+            transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+        }
+    }
 }
 
 .cdk-drag-animating {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.c-buttons-group{
-    margin:12px 0 0 0;
+.c-buttons-group {
+    margin: 12px 0 0 0;
 }
 
-.c-button--edit{
-    margin:0 10px 0 0;
+.c-button--edit {
+    margin: 0 10px 0 0;
 }
